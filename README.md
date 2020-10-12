@@ -1,6 +1,6 @@
 # CommerceIQTask
 
-We should declare environment variables for GitHub repo owner and repo name if none of them are null then by default owner-apache and repo-airflow will be considered and file paths need to be declared for CSV files.
+We should declare environment variables for GitHub repo owner and repo name if either of them is null then by owner-apache and repo-airflow will be considered by default and file paths need to be declared for CSV files.
 
 export owner="apache";
 
