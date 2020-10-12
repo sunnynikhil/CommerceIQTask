@@ -67,7 +67,7 @@ public class RestClientAPI {
                             long unix = (int)objects.get("week");
                             objects.put("week", convertUnixToDate(unix));
                     }
-                    String file_path = System.getenv("Last_Year_commit_activity");
+                    String file_path = System.getenv("Last_Year_Commit_Activity_Filename");
                     File file = new File(file_path);
                     String csv = CDL.toString(docs);
                     
@@ -120,7 +120,7 @@ public class RestClientAPI {
                     output = new JSONObject(jsonString1.toString());
                     
                     JSONArray getArray = output.getJSONArray("result");
-                    String file_path = System.getenv("Addition_Deletion_activity");
+                    String file_path = System.getenv("Addition_Deletion_Activity_Filename");
                     File file = new File(file_path);
                     for(int index=0;index<getArray.length();index++)
                     {
