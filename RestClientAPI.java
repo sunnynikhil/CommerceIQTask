@@ -54,8 +54,6 @@ public class RestClientAPI {
                 jsonString1.append("{\"result\" :");
                 jsonString1.append(jsonString.toString());
                 jsonString1.append("}");
-          
-//                System.out.println(jsonString1.toString());
                 JSONObject output;
                 
                 try{
@@ -75,7 +73,9 @@ public class RestClientAPI {
                     System.out.println("Data has been Sucessfully Writeen to "+ file);
                 }
                 catch (IOException e) {
+			
                     e.printStackTrace();
+			
                 } 
 		connection.disconnect();
         }
@@ -140,7 +140,9 @@ public class RestClientAPI {
                     System.out.println("Data has been Sucessfully Writeen to "+ file);
                 }
                 catch (IOException e) {
+			
                     e.printStackTrace();
+			
                 } 
 		connection.disconnect();
         }
@@ -167,5 +169,6 @@ public class RestClientAPI {
     {
         getLastYearCommitActivity();
         getNumberOfAdditionsAndDeletions();
+	    
     }
 }
