@@ -26,14 +26,14 @@ import org.apache.commons.io.FileUtils;
 
 /**
  *
- * @author oyo
+ * @author nikhil
  */
 public class RestClientAPI {
     
     public static void getLastYearCommitActivity()
     {
         try{
-          
+
             URL url = new URL("https://api.github.com/repos/apache/airflow/stats/commit_activity");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -55,7 +55,7 @@ public class RestClientAPI {
                 jsonString1.append(jsonString.toString());
                 jsonString1.append("}");
           
-                System.out.println(jsonString1.toString());
+//                System.out.println(jsonString1.toString());
                 JSONObject output;
                 
                 try{
@@ -67,7 +67,8 @@ public class RestClientAPI {
                             long unix = (int)objects.get("week");
                             objects.put("week", convertUnixToDate(unix));
                     }
-                    File file = new File("/Users/oyo/NetBeansProjects/javacourse/src/CIQTask/last_year_commit_activity.csv");
+                    String file_path = System.getenv("Last_Year_commit_activity");
+                    File file = new File(file_path);
                     String csv = CDL.toString(docs);
                     
                     FileUtils.writeStringToFile(file, csv);
@@ -119,7 +120,8 @@ public class RestClientAPI {
                     output = new JSONObject(jsonString1.toString());
                     
                     JSONArray getArray = output.getJSONArray("result");
-                    File file = new File("/Users/oyo/NetBeansProjects/javacourse/src/CIQTask/additions_deletions.csv");
+                    String file_path = System.getenv("Addition_Deletion_activity");
+                    File file = new File(file_path);
                     for(int index=0;index<getArray.length();index++)
                     {
                         JSONObject objects = getArray.getJSONObject(index);
@@ -130,7 +132,6 @@ public class RestClientAPI {
                             long unix = (int)objects1.get("w");
                             objects1.put("w", convertUnixToDate(unix));
                         }
-                        System.out.println(docs);
                         String csv = CDL.toString(docs);
                         FileUtils.writeStringToFile(file, csv);
                         
@@ -165,6 +166,6 @@ public class RestClientAPI {
     public static void main(String[] args)
     {
         getLastYearCommitActivity();
-//        getNumberOfAdditionsAndDeletions();
+        getNumberOfAdditionsAndDeletions();
     }
 }
