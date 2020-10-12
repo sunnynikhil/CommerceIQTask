@@ -34,11 +34,18 @@ public class RestClientAPI {
     {
         try{
 
-            URL url = new URL("https://api.github.com/repos/apache/airflow/stats/commit_activity");
+	    String owner = System.getenv("owner");
+            String repo = System.getenv("repo");
+            if(owner==null || repo==null)
+            {
+                owner = "apache";
+                repo = "airflow";
+            }
+            URL url = new URL("https://api.github.com/repos/"+owner+"/"+repo+"/stats/commit_activity");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/json");
-            if (connection.getResponseCode() != 200 && connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() != 200 && connection.getResponseCode() != HttpURLConnection.HTTP_OK && connection.getResponseCode() != 202) {
 			throw new RuntimeException("Failed : HTTP error code : "
 					+ connection.getResponseCode());
 		}
@@ -93,11 +100,18 @@ public class RestClientAPI {
     {
         try{
           
-            URL url = new URL("https://api.github.com/repos/apache/airflow/stats/contributors");
+            String owner = System.getenv("owner");
+            String repo = System.getenv("repo");
+            if(owner==null || repo==null)
+            {
+                owner = "apache";
+                repo = "airflow";
+            }
+            URL url = new URL("https://api.github.com/repos/"+owner+"/"+repo+"/stats/contributors");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/json");
-            if (connection.getResponseCode() != 200 && connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() != 200 && connection.getResponseCode() != HttpURLConnection.HTTP_OK && connection.getResponseCode() != 202) {
 			throw new RuntimeException("Failed : HTTP error code : "
 					+ connection.getResponseCode());
 		}
